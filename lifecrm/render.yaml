@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: lifecrm-api
+    runtime: go
+    buildCommand: go build -o app ./cmd/server
+    startCommand: ./app
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: lifecrm-db
+          property: connectionString
+      - key: PORT
+        value: "8080"
+
+databases:
+  - name: lifecrm-db
+    databaseName: lifecrm
+    user: lifecrm
+    postgresMajorVersion: "17"
