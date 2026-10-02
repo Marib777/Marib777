@@ -2,6 +2,7 @@ services:
   - type: web
     name: lifecrm-api
     runtime: go
+    plan: free
     rootDir: lifecrm
     buildCommand: go build -o app ./cmd/server
     startCommand: ./app
@@ -18,4 +19,5 @@ databases:
   - name: lifecrm-db
     databaseName: lifecrm
     user: lifecrm
+    plan: free
     postgresMajorVersion: "17"
